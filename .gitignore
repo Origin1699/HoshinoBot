@@ -19,6 +19,7 @@ images/
 log/
 hoshino/modules/shebot/res/
 */__pycache__/
+hoshino/modules/baidupan/config.yml
 
 
 # 非公开的组件
