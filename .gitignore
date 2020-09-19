@@ -136,3 +136,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+hoshino/modules/baidupan/config.yml
