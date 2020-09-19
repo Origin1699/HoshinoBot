@@ -5,9 +5,13 @@ from . import sv
 
 p1 = R.img('priconne/quick/r17-3-tw-0.png').cqcode
 p2 = R.img('priconne/quick/r17-3-tw-1.png').cqcode
-p4 = R.img('priconne/quick/r18-3-jp-1.png').cqcode
-p5 = R.img('priconne/quick/r18-3-jp-2.png').cqcode
-p6 = R.img('priconne/quick/r18-3-jp-3.png').cqcode
+p3 = R.img('priconne/quick/r17-3-tw-2.png').cqcode
+
+p8 = R.img('priconne/quick/r17-3-tw.png').cqcode
+
+p4 = R.img('priconne/quick/r17-5-jp-1.png').cqcode
+p5 = R.img('priconne/quick/r17-5-jp-2.png').cqcode
+p6 = R.img('priconne/quick/r17-5-jp-3.png').cqcode
 p7 = R.img('priconne/quick/r9-5-cn.png').cqcode
 
 @sv.on_rex(r'^(\*?([日台国陆b])服?([前中后]*)卫?)?rank(表|推荐|指南)?$')
@@ -23,7 +27,7 @@ async def rank_sheet(bot, ev):
         '\n※表格仅供参考，升r有风险，强化需谨慎\n※一切以会长要求为准——',
     ]
     if is_jp:
-        msg.append('※不定期搬运自图中Q群\n※广告为原作者推广，与本bot无关\nR18-3 rank表：')
+        msg.append('※不定期搬运自图中Q群\n※广告为原作者推广，与本bot无关\nR17-5 rank表：')
         pos = match.group(3)
         if not pos or '前' in pos:
             msg.append(str(p4))
@@ -34,7 +38,8 @@ async def rank_sheet(bot, ev):
         await bot.send(ev, '\n'.join(msg), at_sender=True)
         await util.silence(ev, 60)
     elif is_tw:
-        msg.append(f'※不定期搬运自漪夢奈特\n※油管频道有介绍视频及原文档\nR17-3 rank表：\n{p1} {p2}')
+        #msg.append(f'※不定期搬运自漪夢奈特\n※油管频道有介绍视频及原文档\nR17-3 rank表：\n{p1} {p2} {p3}')
+        msg.append(f'※不定期搬运自漪夢奈特\n※油管频道有介绍视频及原文档\nR17-3 rank表：\n{p8}')
         await bot.send(ev, '\n'.join(msg), at_sender=True)
         await util.silence(ev, 60)
     elif is_cn:
@@ -43,7 +48,7 @@ async def rank_sheet(bot, ev):
         await util.silence(ev, 60)
 
 
-@sv.on_fullmatch(('jjc', 'JJC', 'JJC作业', 'JJC作业网', 'JJC数据库', 'jjc作业', 'jjc作业网', 'jjc数据库'))
+@sv.on_fullmatch(('jjc', 'JJC', 'JJC作业', 'JJC作业网', 'JJC数据库', 'jjc作业', 'jjc作业网', 'jjc数据库', 'JJC作業', 'JJC作業網', 'JJC數據庫', 'jjc作業', 'jjc作業網', 'jjc數據庫'))
 async def say_arina_database(bot, ev):
     await bot.send(ev, '公主连接Re:Dive 竞技场编成数据库\n日文：https://nomae.net/arenadb \n中文：https://pcrdfans.com/battle')
 
@@ -81,7 +86,7 @@ BCR_SITES = f'''
 {OTHER_KEYWORDS}
 ※日台服速查请输入【pcr速查】'''
 
-@sv.on_fullmatch(('pcr速查', 'pcr图书馆', '图书馆'))
+@sv.on_fullmatch(('pcr速查', 'pcr图书馆', 'pcr圖書館', '图书馆', '圖書館'))
 async def pcr_sites(bot, ev: CQEvent):
     await bot.send(ev, PCR_SITES, at_sender=True)
     await util.silence(ev, 60)
@@ -91,7 +96,7 @@ async def bcr_sites(bot, ev: CQEvent):
     await util.silence(ev, 60)
 
 
-YUKARI_SHEET_ALIAS = map(lambda x: ''.join(x), itertools.product(('黄骑', '酒鬼'), ('充电', '充电表', '充能', '充能表')))
+YUKARI_SHEET_ALIAS = map(lambda x: ''.join(x), itertools.product(('黄骑', '酒鬼', '黃騎'), ('充电', '充电表', '充能', '充能表')))
 YUKARI_SHEET = f'''
 {R.img('priconne/quick/黄骑充电.jpg').cqcode}
 ※大圈是1动充电对象 PvP测试

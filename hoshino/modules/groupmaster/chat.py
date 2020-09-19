@@ -13,27 +13,29 @@ async def say_hello(session):
 
 sv = Service('chat', visible=False)
 
-@sv.on_fullmatch('沙雕机器人')
+@sv.on_fullmatch(('沙雕机器人', '沙雕機器人'))
 async def say_sorry(bot, ev):
     await bot.send(ev, 'ごめんなさい！嘤嘤嘤(〒︿〒)')
 
 
 @sv.on_fullmatch(('老婆', 'waifu', 'laopo'), only_to_me=True)
 async def chat_waifu(bot, ev):
-    if not priv.check_priv(ev, priv.SUPERUSER):
-        await bot.send(ev, R.img('laopo.jpg').cqcode)
-    else:
-        await bot.send(ev, 'mua~')
+	if random.randint(0, 1) == 1:
+		await bot.send(ev, R.img('laopo.jpg').cqcode)
+	else:
+		await bot.send(ev, R.img('喊谁老婆呢.jpg').cqcode)
 
 
 @sv.on_fullmatch('老公', only_to_me=True)
 async def chat_laogong(bot, ev):
-    await bot.send(ev, '你给我滚！', at_sender=True)
+	pic = R.img(f"chieri{random.randint(3, 4)}.jpg").cqcode
+	await bot.send(ev, f"给劳资爪巴！\n{pic}", at_sender=True)
 
 
 @sv.on_fullmatch('mua', only_to_me=True)
 async def chat_mua(bot, ev):
-    await bot.send(ev, '笨蛋~', at_sender=True)
+	pic = R.img(f"chieri{random.randint(1, 2)}.jpg").cqcode
+	await bot.send(ev, R.img(f"走开啦！\n{pic}"), at_sender=True)
 
 
 @sv.on_fullmatch('来点星奏')
@@ -49,8 +51,14 @@ async def ddhaole(bot, ev):
 
 @sv.on_fullmatch('我好了')
 async def nihaole(bot, ev):
-    await bot.send(ev, '不许好，憋回去！')
-    await util.silence(ev, 30)
+	await bot.send(ev, R.img('已经可以了.jpg').cqcode)
+	
+@sv.on_fullmatch('日服公告')
+async def nihaole(bot, ev):
+	await bot.send(ev, 'https://priconne-redive.jp/news/')
+@sv.on_fullmatch('台服公告')
+async def nihaole(bot, ev):
+	await bot.send(ev, 'http://www.princessconnect.so-net.tw/news')
 
 
 # ============================================ #
@@ -73,6 +81,11 @@ async def chat_neigui(bot, ctx):
     if random.random() < 0.10:
         await bot.send(ctx, R.img('内鬼.png').cqcode)
 
+@sv.on_keyword(('nmsl'))
+async def chat_nmsl(bot, ctx):
+    if random.random() < 0.10:
+        await bot.send(ctx, R.img('nmsl.png').cqcode)
+
 nyb_player = f'''{R.img('newyearburst.gif').cqcode}
 正在播放：New Year Burst
 ──●━━━━ 1:05/1:30
@@ -81,5 +94,5 @@ nyb_player = f'''{R.img('newyearburst.gif').cqcode}
 
 @sv.on_keyword(('春黑', '新黑'))
 async def new_year_burst(bot, ev):
-    if random.random() < 0.02:
+    if random.random() < 0.10:
         await bot.send(ev, nyb_player)
