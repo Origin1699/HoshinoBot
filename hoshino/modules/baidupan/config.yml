@@ -1,6 +1,9 @@
 # 打开https://tieba.baidu.com/index.html 查看源代码搜索  {"user_id": 获取
 UID: 0
 # 度盘的cookie信息 退出登录会导致bduss过期 如需换号就清空cookie吧
+BDUSS: 'XXX'
+STOKEN: 'XXX'
+BAIDUID: 'XXX'
 
 
 comm:
